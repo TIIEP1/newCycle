@@ -1,0 +1,32 @@
+### Buscar usuários
+GET http://localhost:8080/users
+
+### Inserindo um usuário
+POST localhost:8080/users
+Content-Type: application/json
+
+{
+    "name": "Lucas Inácio",
+    "email": "lucas@hotmail.com",
+    "password": "123456",
+    "type": "CUSTOMER",
+    "dateNasc": "2000-05-20T00:00:00-03:00",
+    "cfp": "12345678901"
+}
+
+### Inserindo um usuário
+POST localhost:8080/users
+Content-Type: application/json
+
+{
+  "name": "JOAO Inácio",
+  "email": "JOAO@hotmail.com",
+  "password": "654321",
+  "type": "EMPLOYEE",
+  "dateNasc": "2000-05-20T00:00:00-03:00",
+  "cfp": "09877565433"
+}
+
+###
+DELETE localhost:8080/users/1
+
