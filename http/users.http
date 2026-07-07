@@ -6,10 +6,10 @@ POST localhost:8080/users
 Content-Type: application/json
 
 {
-    "name": "Lucas Inácio",
-    "email": "lucas@hotmail.com",
+    "name": "paulo arthur",
+    "email": "paulo@hotmail.com",
     "password": "123456",
-    "type": "CUSTOMER",
+    "type": "EMPLOYEE",
     "dateNasc": "2000-05-20T00:00:00-03:00",
     "cfp": "12345678901"
 }
@@ -29,4 +29,9 @@ Content-Type: application/json
 
 ###
 DELETE localhost:8080/users/1
+
+
+### criar carteira
+POST localhost:8080/wallet/user/3
+Content-Type: application/json
 

@@ -1,6 +1,7 @@
 package com.NewCycle.cashtrash.model;
 
 import com.NewCycle.cashtrash.model.enums.TipoUser;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.OffsetDateTime;
@@ -23,6 +24,9 @@ public class User {
     private TipoUser type;
     private OffsetDateTime dateNasc;
     private String cfp;
+    @OneToOne(mappedBy = "user", cascade =CascadeType.ALL)
+    private Wallet wallet;
+
 
     @Column(nullable = false)
     private OffsetDateTime createdAt;
@@ -120,6 +124,15 @@ public class User {
 
     public void setUpdatedAt(OffsetDateTime updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+
+    public Wallet getWallet() {
+        return wallet;
+    }
+
+    public void setWallet(Wallet wallet) {
+        this.wallet = wallet;
     }
 
     @PrePersist
