@@ -1,9 +1,8 @@
 package com.NewCycle.cashtrash.services;
 
-import com.NewCycle.cashtrash.model.User;
-import com.NewCycle.cashtrash.model.UserAlreadyHasWallet;
-import com.NewCycle.cashtrash.model.UserNotFoundException;
-import com.NewCycle.cashtrash.model.Wallet;
+import com.NewCycle.cashtrash.dtos.response.ResponseGetWallet;
+import com.NewCycle.cashtrash.dtos.response.ResponseGetWalletBalance;
+import com.NewCycle.cashtrash.model.*;
 import com.NewCycle.cashtrash.repositories.UserRepository;
 import com.NewCycle.cashtrash.repositories.WalletRepository;
 import org.springframework.stereotype.Service;
@@ -34,6 +33,16 @@ public class WalletService {
         repository.save(wallet);
 
         return  wallet;
+    }
+
+    public ResponseGetWallet findById(Long walletId){
+       Wallet wallet = repository.findById(walletId).orElseThrow(() -> new WalletNotFoundException(walletId));
+       return ResponseGetWallet.from(wallet);
+    }
+
+    public ResponseGetWalletBalance getWalletBalance(Long walletId){
+        Wallet wallet = repository.findById(walletId).orElseThrow(() -> new WalletNotFoundException(walletId));
+        return ResponseGetWalletBalance.from(wallet);
     }
 
 }

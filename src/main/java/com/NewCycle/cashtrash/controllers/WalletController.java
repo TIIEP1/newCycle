@@ -1,15 +1,14 @@
 package com.NewCycle.cashtrash.controllers;
 
+import com.NewCycle.cashtrash.dtos.response.ResponseGetWallet;
+import com.NewCycle.cashtrash.dtos.response.ResponseGetWalletBalance;
 import com.NewCycle.cashtrash.model.Wallet;
 import com.NewCycle.cashtrash.services.WalletService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/wallet")
+@RequestMapping(value = "/wallets")
 public class WalletController {
 
     private final WalletService service;
@@ -22,6 +21,18 @@ public class WalletController {
     public ResponseEntity<Wallet> createWallet(@PathVariable Long id){
         Wallet wallet = service.createWallet(id);
 
+        return ResponseEntity.ok(wallet);
+    }
+
+    @GetMapping("/{id}/balance")
+    public ResponseEntity<ResponseGetWalletBalance> getWalletBalance(@PathVariable Long id){
+        ResponseGetWalletBalance wallet = service.getWalletBalance(id);
+        return ResponseEntity.ok(wallet);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ResponseGetWallet> findById(@PathVariable Long id){
+        ResponseGetWallet wallet = service.findById(id);
         return ResponseEntity.ok(wallet);
     }
 }
