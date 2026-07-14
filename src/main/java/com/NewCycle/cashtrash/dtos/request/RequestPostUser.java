@@ -18,17 +18,14 @@ public class RequestPostUser {
     @Enumerated(EnumType.STRING)
     private TipoUser type;
     @NotNull
-    private OffsetDateTime dateNasc;
-    @NotNull
     private String cfp;
 
     public RequestPostUser(String name, String email, String password,
-                           TipoUser type, OffsetDateTime dateNasc, String cfp) {
+                           TipoUser type, String cfp) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.type = type;
-        this.dateNasc = dateNasc;
         this.cfp = cfp;
     }
 
@@ -64,13 +61,6 @@ public class RequestPostUser {
         this.type = type;
     }
 
-    public OffsetDateTime getDateNasc() {
-        return dateNasc;
-    }
-
-    public void setDateNasc(OffsetDateTime dateNasc) {
-        this.dateNasc = dateNasc;
-    }
 
     public String getCfp() {
         return cfp;
