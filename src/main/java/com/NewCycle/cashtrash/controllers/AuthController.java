@@ -52,6 +52,7 @@ public class AuthController {
         user.setName(register.name());
         user.setEmail(register.email());
         user.setType(TipoUser.valueOf(register.tipoUsuario()));
+        user.setCfp(register.cpf());
         user.setPassword(passwordEncoder.encode(register.password()));
         return ResponseEntity.ok(RegisterUserResponse.from(repository.save(user)));
     }
