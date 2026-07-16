@@ -31,7 +31,7 @@ public class UserService {
     @Transactional
     public User insert(RequestPostUser postUser){
         User newUser = new User(postUser.getName(),postUser.getEmail(),
-                postUser.getPassword(),postUser.getType(), postUser.getDateNasc(), postUser.getCfp());
+                postUser.getPassword(),postUser.getType(), postUser.getCfp());
        return userRepository.save(newUser);
     }
     @Transactional
@@ -40,7 +40,6 @@ public class UserService {
         oldUser.setName(postUser.getName());
         oldUser.setEmail(postUser.getEmail());
         oldUser.setCfp(postUser.getCfp());
-        oldUser.setDateNasc(postUser.getDateNasc());
         oldUser.setType(postUser.getType());
         return userRepository.save(oldUser);
     }

@@ -3,12 +3,16 @@ package com.NewCycle.cashtrash.model;
 import com.NewCycle.cashtrash.model.enums.TipoUser;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.OffsetDateTime;
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +26,6 @@ public class User {
     private Boolean active = true;
     @Enumerated(EnumType.STRING)
     private TipoUser type;
-    private OffsetDateTime dateNasc;
     private String cfp;
     @OneToOne(mappedBy = "user", cascade =CascadeType.ALL)
     private Wallet wallet;
@@ -37,12 +40,11 @@ public class User {
     }
 
     public User(String name, String email, String password, TipoUser type,
-                OffsetDateTime dateNasc, String cfp) {
+                 String cfp) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.type = type;
-        this.dateNasc = dateNasc;
         this.cfp = cfp;
     }
 
@@ -70,10 +72,6 @@ public class User {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
     public void setPassword(String password) {
         this.password = password;
     }
@@ -94,13 +92,6 @@ public class User {
         this.type = type;
     }
 
-    public OffsetDateTime getDateNasc() {
-        return dateNasc;
-    }
-
-    public void setDateNasc(OffsetDateTime dateNasc) {
-        this.dateNasc = dateNasc;
-    }
 
     public String getCfp() {
         return cfp;
@@ -144,5 +135,39 @@ public class User {
     @PreUpdate
     public void preUpdate(){
         updatedAt = OffsetDateTime.now();
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of();
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return "";
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }
