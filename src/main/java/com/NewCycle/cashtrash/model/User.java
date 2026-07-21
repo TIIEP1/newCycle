@@ -30,6 +30,10 @@ public class User implements UserDetails {
     @OneToOne(mappedBy = "user", cascade =CascadeType.ALL)
     private Wallet wallet;
 
+    private Double totalColetado;
+
+    private Integer descartes;
+
 
     @Column(nullable = false)
     private OffsetDateTime createdAt;
@@ -46,6 +50,8 @@ public class User implements UserDetails {
         this.password = password;
         this.type = type;
         this.cfp = cfp;
+        this.totalColetado = 0.0;
+        this.descartes = 0;
     }
 
     public Long getId() {
@@ -117,6 +123,21 @@ public class User implements UserDetails {
         this.updatedAt = updatedAt;
     }
 
+    public Double getTotalColetado() {
+        return totalColetado;
+    }
+
+    public void setTotalColetado(Double totalColetado) {
+        this.totalColetado = totalColetado;
+    }
+
+    public Integer getDescartes() {
+        return descartes;
+    }
+
+    public void setDescartes(Integer descartes) {
+        this.descartes = descartes;
+    }
 
     public Wallet getWallet() {
         return wallet;
