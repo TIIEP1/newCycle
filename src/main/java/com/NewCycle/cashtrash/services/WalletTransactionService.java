@@ -1,7 +1,7 @@
 package com.NewCycle.cashtrash.services;
 
 import com.NewCycle.cashtrash.model.Wallet;
-import com.NewCycle.cashtrash.model.WalletNotFoundException;
+import com.NewCycle.cashtrash.model.exception.WalletNotFoundException;
 import com.NewCycle.cashtrash.repositories.WalletRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;

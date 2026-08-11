@@ -3,7 +3,7 @@ package com.NewCycle.cashtrash.services;
 import com.NewCycle.cashtrash.dtos.request.RequestPostUser;
 import com.NewCycle.cashtrash.dtos.request.RequestPutUser;
 import com.NewCycle.cashtrash.model.User;
-import com.NewCycle.cashtrash.model.UserNotFoundException;
+import com.NewCycle.cashtrash.model.exception.UserNotFoundException;
 import com.NewCycle.cashtrash.repositories.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;

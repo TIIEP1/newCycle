@@ -1,4 +1,4 @@
-package com.NewCycle.cashtrash.model;
+package com.NewCycle.cashtrash.model.exception;
 
 public class UserNotFoundException extends RuntimeException {
     public UserNotFoundException(Long id) {

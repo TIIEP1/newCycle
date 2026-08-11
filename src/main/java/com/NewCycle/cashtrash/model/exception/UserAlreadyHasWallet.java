@@ -1,4 +1,4 @@
-package com.NewCycle.cashtrash.model;
+package com.NewCycle.cashtrash.model.exception;
 
 public class UserAlreadyHasWallet extends RuntimeException {
     public UserAlreadyHasWallet(Long id) {

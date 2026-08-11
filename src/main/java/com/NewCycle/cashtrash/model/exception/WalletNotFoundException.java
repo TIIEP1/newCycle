@@ -1,4 +1,4 @@
-package com.NewCycle.cashtrash.model;
+package com.NewCycle.cashtrash.model.exception;
 
 public class WalletNotFoundException extends RuntimeException {
     public WalletNotFoundException(Long walletId) {

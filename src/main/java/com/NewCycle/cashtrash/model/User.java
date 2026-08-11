@@ -7,6 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -29,6 +30,8 @@ public class User implements UserDetails {
     private String cfp;
     @OneToOne(mappedBy = "user", cascade =CascadeType.ALL)
     private Wallet wallet;
+
+    private List<Trash> trashes = new ArrayList<>();
 
     private Double totalColetado;
 
