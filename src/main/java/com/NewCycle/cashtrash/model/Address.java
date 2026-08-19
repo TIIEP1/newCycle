@@ -33,6 +33,10 @@ public class Address {
         this.complemento = complemento;
     }
 
+    public static Address toAddress(){
+        return null;
+    }
+
     public Long getId() {
         return id;
     }

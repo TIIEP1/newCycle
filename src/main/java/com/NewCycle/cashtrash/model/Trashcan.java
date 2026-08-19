@@ -1,5 +1,6 @@
 package com.NewCycle.cashtrash.model;
 
+import com.NewCycle.cashtrash.dtos.request.RequestPostTrashcan;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -14,9 +15,10 @@ public class Trashcan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String name;
     private Boolean fully;
     private BigDecimal capacidade;
-    private Boolean active;
+    private Boolean active = true;
     private OffsetDateTime createdAt;
     private OffsetDateTime updatedAt;
     @OneToMany(mappedBy = "trashcan")
@@ -27,14 +29,13 @@ public class Trashcan {
     public Trashcan() {
     }
 
-    public Trashcan(Long id, Boolean fully, BigDecimal capacidade,
-                    Boolean active, OffsetDateTime createdAt, OffsetDateTime updatedAt) {
-        this.id = id;
+    public Trashcan(Boolean fully, BigDecimal capacidade) {
         this.fully = fully;
         this.capacidade = capacidade;
-        this.active = active;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+    }
+
+    public static Trashcan from(RequestPostTrashcan requestPostTrashcan){
+        return new Trashcan();
     }
 
     public Long getId() {
@@ -43,6 +44,14 @@ public class Trashcan {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Boolean getFully() {
