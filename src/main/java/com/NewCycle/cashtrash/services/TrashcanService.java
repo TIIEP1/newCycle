@@ -1,6 +1,7 @@
 package com.NewCycle.cashtrash.services;
 
 import com.NewCycle.cashtrash.dtos.request.RequestPostTrashcan;
+import com.NewCycle.cashtrash.dtos.request.RequestPutTrashcan;
 import com.NewCycle.cashtrash.dtos.response.ReponseGetTrashcanSimplific;
 import com.NewCycle.cashtrash.model.Trashcan;
 import com.NewCycle.cashtrash.model.exception.TrashcanNotFoundException;
@@ -29,8 +30,32 @@ public class TrashcanService {
        return ReponseGetTrashcanSimplific.toReposeGetTrashcanSimplific(obj);
     }
 
-    public ReponseGetTrashcanSimplific create(RequestPostTrashcan request){
+    private Trashcan findByIdCompleteTrashcan(Long id){
+        Trashcan obj = trashcanRepository.findById(id).orElseThrow(() -> new TrashcanNotFoundException(id));
+        return obj;
+    }
 
-        return null;
+    public ReponseGetTrashcanSimplific create(RequestPostTrashcan request){
+        Trashcan obj = trashcanRepository.save(request.toTrashcan());
+        return ReponseGetTrashcanSimplific.toReposeGetTrashcanSimplific(obj);
+    }
+
+    public Trashcan update(Long id, RequestPutTrashcan request){
+        Trashcan oldTrashcan = findByIdCompleteTrashcan(id);
+        if(request.getName() != null){
+            oldTrashcan.setName(request.getName());
+        }
+        if (request.getActive() != null){
+            oldTrashcan.setActive(request.getActive());
+        }
+        if (request.getFully() != null){
+            oldTrashcan.setFully(request.getFully());
+        }
+
+        if (request.getCapacidade() != null){
+            oldTrashcan.setCapacidade(request.getCapacidade());
+        }
+
+        return trashcanRepository.save(oldTrashcan);
     }
 }

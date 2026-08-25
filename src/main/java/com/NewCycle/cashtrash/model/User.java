@@ -30,7 +30,7 @@ public class User implements UserDetails {
     private String cfp;
     @OneToOne(mappedBy = "user", cascade =CascadeType.ALL)
     private Wallet wallet;
-
+    @OneToMany(mappedBy = "user")
     private List<Trash> trashes = new ArrayList<>();
 
     private Double totalColetado;

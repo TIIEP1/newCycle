@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name="trashcans")
@@ -15,6 +16,10 @@ public class Trashcan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false, unique = true, updatable = false)
+    private  UUID uuid;
+
     private String name;
     private Boolean fully;
     private BigDecimal capacidade;
@@ -23,19 +28,17 @@ public class Trashcan {
     private OffsetDateTime updatedAt;
     @OneToMany(mappedBy = "trashcan")
     private List<Trash> trashes = new ArrayList<>();
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id")
     private Address address;
     public Trashcan() {
     }
 
-    public Trashcan(Boolean fully, BigDecimal capacidade) {
+    public Trashcan(String name ,Boolean fully, BigDecimal capacidade, Address address) {
+        this.uuid = UUID.randomUUID();
         this.fully = fully;
         this.capacidade = capacidade;
-    }
-
-    public static Trashcan from(RequestPostTrashcan requestPostTrashcan){
-        return new Trashcan();
+        this.address = address;
     }
 
     public Long getId() {
