@@ -16,10 +16,9 @@ public class Trashcan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(nullable = false, unique = true, updatable = false)
-    private  UUID uuid;
-
+    @OneToOne(cascade = CascadeType.ALL, optional = false)
+    @JoinColumn(name = "device_trash_id")
+    private DeviceTrash deviceTrash = new DeviceTrash();
     private String name;
     private Boolean fully;
     private BigDecimal capacidade;
@@ -35,7 +34,6 @@ public class Trashcan {
     }
 
     public Trashcan(String name ,Boolean fully, BigDecimal capacidade, Address address) {
-        this.uuid = UUID.randomUUID();
         this.fully = fully;
         this.capacidade = capacidade;
         this.address = address;
@@ -111,5 +109,13 @@ public class Trashcan {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public DeviceTrash getDeviceTrash() {
+        return deviceTrash;
+    }
+
+    public void setDeviceTrash(DeviceTrash deviceTrash) {
+        this.deviceTrash = deviceTrash;
     }
 }
