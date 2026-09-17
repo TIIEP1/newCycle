@@ -1,18 +1,17 @@
 spring:
   datasource:
-    url: ${DB_URL_DEV}
-    username: ${DB_USER}
-    password: ${DB_PASSWORD}
+    url: jdbc:postgresql://localhost:5432/${DB_URL_DEV:newcycle}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:123456}
     driver-class-name: org.postgresql.Driver
 
   jpa:
     hibernate:
-      ddl-auto: validate
+      ddl-auto: update
     show-sql: true
     properties:
       hibernate:
         format_sql: true
 
-  flyway:
-    enabled: true
-    locations: classpath:db/migration
+jwt:
+  secret: ${JWT_SECRET}
