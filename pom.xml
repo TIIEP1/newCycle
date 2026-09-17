@@ -103,7 +103,7 @@
 				production
 			</id>
 			<properties>
-				<spring.profiles.active>prod</spring.profiles.active>
+				<spring.profiles.active>production</spring.profiles.active>
 			</properties>
 		</profile>
 	</profiles>
